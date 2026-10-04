@@ -17,6 +17,7 @@ func main(){
 	appendDll(&dll, 6)
 	appendDll(&dll, 7)
 	appendDlls(&dll, 8, 9, 10)
+	prependDll(&dll, 0)
 
 	currentNode := dll.Head
 	fmt.Println("Head node Previous <nil>")
@@ -69,4 +70,17 @@ func appendDlls(dll *types.Dll, data ...int) {
 		currentNode = next_node
 	}
 
+}
+
+func prependDll(dll *types.Dll, data int) {
+
+	if dll.Head == nil {
+		head_node := &types.Node{nil, data, nil}
+		dll.Head = head_node
+	}
+
+	previos_node := dll.Head
+	newNode := &types.Node{nil, data, previos_node}
+	previos_node.Previous = newNode
+	dll.Head = newNode
 }
